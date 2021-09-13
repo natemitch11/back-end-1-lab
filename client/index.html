@@ -9,13 +9,19 @@
     />
   </head>
   <body class="container">
+    <div>
     <h1>Friends</h1>
     <ul id="people" class=""></ul>
 
     <button id="button">GET Friends List</button>
-
+    </div>
+    <form id="form">
+        <input id="input" style="margin-top: 1rem"/>
+        <button id="post-button">Add to Friends</button>
+    </form>
     <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
     <script>
+
       document.getElementById("button").onclick = function () {
         axios
           .get("http://localhost:4000/api/users")
@@ -31,7 +37,23 @@
             document.getElementById("people").innerHTML =
               '<li class="text-danger">' + err.message + "</li>";
           });
-      };
+    };
+
+      document.getElementById('form').onsubmit = function(e) {
+        e.preventDefault();
+        let nameField = document.getElementById('input')
+        let nameValue = document.getElementById('input').value
+        console.log(nameValue)
+          axios
+            .post("http://localhost:4000/api/users", {
+              name: nameValue
+            })
+            .then(res =>{
+                    let data = (res.data);
+            })
+            .catch(err => console.error(err))
+        nameField.value=""
+    };
     </script>
   </body>
 </html>
