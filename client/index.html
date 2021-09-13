@@ -49,7 +49,9 @@
               name: nameValue
             })
             .then(res =>{
-                    let data = (res.data);
+                let data = (res.data);
+                let nameString = '<li class="row">' + data;
+                document.getElementById("people").innerHTML += nameString; 
             })
             .catch(err => console.error(err))
         nameField.value=""

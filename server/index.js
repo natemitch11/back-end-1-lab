@@ -16,7 +16,7 @@ app.get("/api/users", (req, res) => {
 app.post("/api/users/", (req, res) => {
     console.log(req.body.name)
     friends.push(req.body.name)
-    res.status(200).send("User Added Successfully!");
+    res.status(200).send(req.body.name);
 });
 
 app.get("/weather/:temperature", (req, res) => {
